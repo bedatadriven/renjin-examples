@@ -33,6 +33,7 @@
 
   <properties>	
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <renjin.version>0.7.0-RC7</renjin.version>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
@@ -67,6 +68,7 @@
 
   <modules>
     <module>script-engine</module>
+    <module>appengine-simple</module>
   </modules>
 
 </project>
