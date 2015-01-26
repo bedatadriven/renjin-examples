@@ -68,7 +68,7 @@
 
   <modules>
     <module>script-engine</module>
-    <module>appengine-simple</module>
+    <module>appengine-servlet</module>
   </modules>
 
 </project>
