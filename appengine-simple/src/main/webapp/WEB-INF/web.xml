@@ -7,7 +7,7 @@
 
     <servlet>
         <servlet-name>RenjinServlet</servlet-name>
-        <servlet-class>RenjinServlet</servlet-class>
+        <servlet-class>org.renjin.example.appengine.RenjinServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

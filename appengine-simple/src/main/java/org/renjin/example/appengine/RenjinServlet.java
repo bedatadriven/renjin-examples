@@ -1,11 +1,13 @@
+package org.renjin.example.appengine;
+
 import org.renjin.appengine.AppEngineContextFactory;
-import org.renjin.script.RenjinScriptEngineFactory;
 import org.renjin.sexp.ListVector;
-import org.renjin.sexp.SEXP;
 import org.renjin.sexp.StringArrayVector;
 import org.renjin.sexp.Vector;
 
-import javax.script.*;
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
