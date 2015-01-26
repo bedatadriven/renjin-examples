@@ -1,6 +1,5 @@
-App Engine Java/Renjin Application
 
-## Skeleton application for use with Renjin and App Engine Java.
+# Example Google AppEngine WebApp using Renjin and the Servlet API
 
 The Java part of this web app simply defers to the R script WEB-INF/app.R
 
@@ -10,9 +9,9 @@ To build, run
 
     mvn package
 
-Building will run the tests, but to explicitly run tests you can use the test target
+You can run integration tests against a locally running AppEngine development server by running:
 
-    mvn test
+    mvn verify
 
 To start the app, use the [App Engine Maven Plugin](http://code.google.com/p/appengine-maven-plugin/) that is already included in this demo.  Just run the command.
 
