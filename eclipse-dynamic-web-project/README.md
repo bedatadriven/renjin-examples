@@ -45,8 +45,17 @@ at the same time, but by separate threads. To ensure that requests are handled c
 you can use a global [ThreadLocal](https://docs.oracle.com/javase/7/docs/api/java/lang/ThreadLocal.html) instance to ensure that each thread has its own
 `RenjinScriptEngine` instance for handling requests.
 
-See `RenjinServlet` for a super-simple example of evaluating an R expression, serializing
+See [RenjinServlet](src/org/renjin/example/RenjinServlet.java) for a super-simple example of evaluating an R expression, serializing
 the result to JSON, and sending the JSON to the client.
+
+Querying `http://localhost:8080/dynamic-web-example/RenjinServlet?sd=10` then returns:
+
+```
+{
+  "(Intercept)":9.82194831624089,
+   "x":1.0201585366465116
+}
+```
 
 
 
