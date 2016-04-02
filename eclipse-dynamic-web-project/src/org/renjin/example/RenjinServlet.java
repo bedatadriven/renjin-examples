@@ -14,7 +14,7 @@ import org.renjin.script.RenjinScriptEngineFactory;
 import org.renjin.sexp.StringVector;
 
 /**
- * Servlet implementation class MyServlet
+ * Servlet which 
  */
 public class RenjinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,10 +48,25 @@ public class RenjinServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// Obtain the script engine for this thread
 		ScriptEngine engine = getScriptEngine();
+		
+		// Read the ?sd parameter as the standard deviation 
+		// and assign it to the variable "sd" in the R session
+		String sd = request.getParameter("sd");
+		if(sd == null) {
+			engine.put("sd", 1.0);
+		} else {
+			engine.put("sd", Double.parseDouble(sd));
+		}
+		
 		StringVector result;
 		try {
-			result = (StringVector)engine.eval("rjson::toJSON(1:15)");
+			result = (StringVector)engine.eval(
+					"df <- data.frame(x=1:10, y=(1:10)+rnorm(sd, n=10));" +
+					"x <- lm(y ~ x, df);" +
+					"rjson::toJSON(x$coefficients)");
 		} catch (ScriptException e) {
 			throw new ServletException(e);
 		}
