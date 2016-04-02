@@ -15,7 +15,6 @@
 
     <properties>
         <appengine.app.version>1</appengine.app.version>
-        <appengine.target.version>1.9.17a</appengine.target.version>
     </properties>
 
     <dependencies>

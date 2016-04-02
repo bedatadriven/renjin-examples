@@ -34,9 +34,11 @@
   <properties>	
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <renjin.version>0.7.0-RC7</renjin.version>
+    <renjin.version>0.8.1915</renjin.version>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <appengine.target.version>1.9.17a</appengine.target.version>
+    <gwt.version>2.6.1</gwt.version>
   </properties>
 
   <scm>
@@ -69,6 +71,7 @@
   <modules>
     <module>script-engine</module>
     <module>appengine-servlet</module>
+    <module>appengine-repl</module>
   </modules>
 
 </project>
