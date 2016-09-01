@@ -16,14 +16,13 @@
 
 package org.renjin.examples.appengine.server;
 
-import org.renjin.appengine.AppEngineContextFactory;
-import org.renjin.examples.appengine.shared.InterpreterException;
-import org.renjin.examples.appengine.shared.LotREPLsApi;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import org.renjin.appengine.AppEngineContextFactory;
 import org.renjin.eval.Context;
 import org.renjin.eval.EvalException;
 import org.renjin.eval.Session;
-import org.renjin.eval.SessionBuilder;
+import org.renjin.examples.appengine.shared.InterpreterException;
+import org.renjin.examples.appengine.shared.LotREPLsApi;
 import org.renjin.parser.RParser;
 import org.renjin.primitives.io.serialization.RDataReader;
 import org.renjin.primitives.io.serialization.RDataWriter;
@@ -44,7 +43,7 @@ import java.util.logging.Logger;
  */
 public class LotREPLsApiImpl extends RemoteServiceServlet implements LotREPLsApi {
   private static final String GLOBALS = "GLOBALS";
-  private final Logger log = Logger.getLogger(LotREPLsApiImpl.class.getName());
+  private static final Logger LOGGER = Logger.getLogger(LotREPLsApiImpl.class.getName());
 
   private ThreadLocal<Session> sessionThreadLocal = new InheritableThreadLocal<>();
 
@@ -66,7 +65,9 @@ public class LotREPLsApiImpl extends RemoteServiceServlet implements LotREPLsApi
     // Get our thread local session
     Session session = sessionThreadLocal.get();
     if(session == null) {
+      LOGGER.info("Creating new session for thread " + Thread.currentThread().getId());
       session = AppEngineContextFactory.createSession(getServletContext());
+      sessionThreadLocal.set(session);
     }
 
     // Restore the globals for this session
@@ -79,7 +80,7 @@ public class LotREPLsApiImpl extends RemoteServiceServlet implements LotREPLsApi
     try {
       result = session.getTopLevelContext().evaluate(expression);
     } catch(EvalException e) {
-      log.log(Level.WARNING, "Evaluation failed", e);
+      LOGGER.log(Level.WARNING, "Evaluation failed", e);
       throw new InterpreterException(e.getMessage());
     }
 
@@ -117,7 +118,7 @@ public class LotREPLsApiImpl extends RemoteServiceServlet implements LotREPLsApi
     } catch(Exception e) {
       // If there was a deserialization error, throw the session away
       session.removeAttribute(GLOBALS);
-      log.log(Level.WARNING, "Could not deserialize context.", e);
+      LOGGER.log(Level.WARNING, "Could not deserialize context.", e);
     }
   }
 
@@ -138,14 +139,14 @@ public class LotREPLsApiImpl extends RemoteServiceServlet implements LotREPLsApi
       RDataWriter writer = new RDataWriter(context, baos);
       writer.serialize(list.build());
 
-      log.severe(count + " variable saved, " + baos.toByteArray().length + " bytes");
+      LOGGER.severe(count + " variable saved, " + baos.toByteArray().length + " bytes");
 
       HttpServletRequest request = getThreadLocalRequest();
       HttpSession session = request.getSession();
       session.setAttribute(GLOBALS, baos.toByteArray());
 
     } catch(Exception e) {
-      log.log(Level.WARNING, "Failed to serialize globals", e);
+      LOGGER.log(Level.WARNING, "Failed to serialize globals", e);
     }
   }
 }
