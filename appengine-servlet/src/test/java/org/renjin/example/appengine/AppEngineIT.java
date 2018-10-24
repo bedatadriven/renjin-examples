@@ -30,4 +30,22 @@ public class AppEngineIT {
         String response = root.request().get(String.class);
         assertThat(response, equalTo("Hello World\n"));
     }
+
+    /**
+     * Make sure the R.home() path is accessible
+     */
+    @Test
+    public void testHomePath() throws IOException {
+        String response = root.path("home").request().get(String.class);
+        assertThat(response, equalTo("jar:file:///WEB-INF/lib/renjin-core-0.9.2700.jar!/org/renjin\n"));
+    }
+
+    /**
+     * Make sure we can load cran packages that rely on access to package files
+     */
+    @Test
+    public void testHttr() throws IOException {
+        String response = root.path("home").request().get(String.class);
+        assertThat(response, equalTo("jar:file:///WEB-INF/lib/renjin-core-0.9.2700.jar!/org/renjin\n"));
+    }
 }

@@ -36,6 +36,13 @@
             <artifactId>renjin-appengine</artifactId>
             <version>${renjin.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.renjin.cran</groupId>
+            <artifactId>httr</artifactId>
+            <version>1.3.1-b24</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -75,6 +82,12 @@
                 <version>${appengine.target.version}</version>
                 <configuration>
                     <port>8991</port>
+                    <project>renjindemo</project>
+                    <enableJarClasses>false</enableJarClasses>
+                    <jvmFlags>
+                        <jvmFlag>-Xdebug</jvmFlag>
+                        <jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
+                    </jvmFlags>
                 </configuration>
 
                 <executions>

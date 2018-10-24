@@ -34,10 +34,10 @@
   <properties>	
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <renjin.version>0.8.2203</renjin.version>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-    <appengine.target.version>1.9.17a</appengine.target.version>
+    <renjin.version>0.9.2700</renjin.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <appengine.target.version>1.9.67</appengine.target.version>
     <gwt.version>2.6.1</gwt.version>
   </properties>
 
@@ -51,12 +51,12 @@
     <repository>
       <id>renjin-release</id>
       <name>Renjin Releases</name>
-      <url>http://nexus.bedatadriven.com/content/repositories/renjin-release/</url>
+      <url>https://nexus.bedatadriven.com/content/repositories/renjin-release/</url>
     </repository>
     <snapshotRepository>
       <id>renjin-latest</id>
       <name>Renjin Latest Builds</name>
-      <url>http://nexus.bedatadriven.com/content/repositories/renjin-latest/</url>
+      <url>https://nexus.bedatadriven.com/content/repositories/renjin-latest/</url>
     </snapshotRepository>
   </distributionManagement>
 
@@ -64,7 +64,7 @@
     <repository>
       <id>bedatadriven</id>
       <name>bedatadriven public repo</name>
-      <url>http://nexus.bedatadriven.com/content/groups/public/</url>
+      <url>https://nexus.bedatadriven.com/content/groups/public/</url>
     </repository>
   </repositories>
 

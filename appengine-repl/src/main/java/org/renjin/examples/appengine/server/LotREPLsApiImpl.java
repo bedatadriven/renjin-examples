@@ -91,12 +91,8 @@ public class LotREPLsApiImpl extends RemoteServiceServlet implements LotREPLsApi
 
     saveGlobals(session.getTopLevelContext());
 
+    session.getStdOut().flush();
 
-    try {
-      session.getStdOut().flush();
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
     return writer.toString();
 
   }
